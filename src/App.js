@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'
+import axios from 'axios'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Footer from './Pages/landing/Footer/Footer'
+import Home from './Pages/landing/HomePage/Home'
+import IssueLog from './Pages/landing/IssueLog/IssueLog'
+import './App.css'
+import Form from './Pages/landing/Form/Form'
+import Login from './Pages/landing/Login/Login'
+import AdminDashboard from './Pages/landing/Admin/AdminDashboard'
+import AddIssue from './Pages/landing/Admin/components/AddIssue'
 
-function App() {
+
+const App = () => {
+
+  const [posts, setPosts] = useState([])
+  useEffect(() => {
+    axios.get('/post')
+    .then(res => setPosts(res.data))
+    .catch(err => console.log(err))
+  })
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <Switch>
+        <Route path='/' exact component={Home} />
+        <Route path='/issuelog' exact component={IssueLog} />
+        <Route path='/form' exact component={Form} />
+        <Route path='/admin-login' exact component={Login} />
+        <Route path='/addissue' exact component={AddIssue} />
+        <Route path='/admin' exact render={() => <AdminDashboard posts={posts} />} />
+      </Switch>
+    </Router>
+  )
 }
 
-export default App;
+export default App
