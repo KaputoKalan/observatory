@@ -1,0 +1,139 @@
+
+   
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;900&display=swap');
+
+$bg-color: #f1f1f1;
+$primary-color: #000;
+$highlight-color: #03a89e;
+$light-color: #fff;
+$border-color: rgb(223, 223, 223);
+$ff-primary: 'Poppins', sans-serif;
+
+@mixin break {
+  thead {
+    display: none;
+  }
+
+  tr {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  td {
+    display: block;
+    position: relative;
+    padding-left: 130px;
+    text-align: left;
+    border-bottom: 0;
+
+    &:last-child {
+      border-bottom: 1px solid $border-color;
+    }
+
+    &::before {
+      content: attr(data-heading);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 120px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      background-color: $primary-color;
+      color: $light-color;
+      font-size: 0.75rem;
+      padding: 0 5px;
+      justify-content: center;
+    }
+  }
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+} 
+
+body {
+  font-family: $ff-primary;
+  background-color: white;
+  
+}
+
+.header {
+  padding: 50px 15px;
+  background-color: $bg-color;
+  text-align: center;
+  margin-bottom: 40px;
+
+  h1 {
+    font-size: 40px;
+    font-weight: 900;
+  }
+}
+
+.table-container {
+  max-width: 800px;
+  width: 90%;
+  margin: 0 auto 40px;
+  height: 100vh;
+
+  &__title {
+    background-color: $highlight-color;
+    color: $light-color;
+    text-align: center;
+    padding: 10px;
+    margin-top: 5rem;
+
+    h2 {
+      font-size: 24px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse: collapse;
+
+    thead {
+
+      tr {
+        background-color: #e1f5fe;
+      }
+    }
+
+    td, th {
+      border: 1px solid $border-color;
+      padding: 10px;
+      text-align: center;
+    }
+
+    tr {
+        background-color: #4fc3f7;
+      &:nth-child(even) {
+        background-color: #e1f5fe;
+      }
+    }
+
+    &--break-lg {
+
+      @media (max-width: 991px) {
+        @include break;
+      }
+    }
+
+    &--break-md {
+
+      @media (max-width: 767px) {
+        @include break;
+      }
+    }
+
+    &--break-sm {
+
+      @media (max-width: 575px) {
+        @include break;
+      }
+    }
+  }
+}
