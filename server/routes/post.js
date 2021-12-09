@@ -20,7 +20,8 @@ module.exports = router
             name: req.body.name,
             phone: req.body.phone,
             location: req.body.location,
-            description: req.body.description
+            description: req.body.description,
+            files: req.body.files
         })
 
         newPost.save().then(() => res.json("The new post added successfully!"))
@@ -43,6 +44,7 @@ router.put('/update/:id', (req, res) => {
         post.phone = req.body.phone,
         post.location = req.body.location,
         post.description = req.body.description,
+        post.files = req.body.files,
 
         post
         .save()
@@ -62,6 +64,7 @@ router.delete('/delete/:id', (req, res) => {
         post.phone = req.body.phone,
         post.location = req.body.location,
         post.description = req.body.description,
+        post.files = req.body.files,
 
         post
         .save()

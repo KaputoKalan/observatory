@@ -8,7 +8,13 @@ const postSchema = new Schema ({
     phone: { type: String, required: true},
     location: { type: String, required: true},
     description: { type: String, required: true},
-})
+    files: { type: String},
+   
+    },
+    {
+        timestamps: true
+    }
+)
 
 const Post = mongoose.model("Post", postSchema)
 
