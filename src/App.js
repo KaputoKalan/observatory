@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { withRouter, BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Home from './Pages/landing/HomePage/Home'
 import IssueLog from './Pages/landing/IssueLog/IssueLog'
 import './App.css'
@@ -9,16 +9,32 @@ import Login from './Pages/landing/Login/Login'
 import AdminDashboard from './Pages/landing/Admin/AdminDashboard'
 import AddIssue from './Pages/landing/Admin/components/AddIssue'
 import Sidebar from './Pages/landing/Sidebar/Sidebar'
+import Contact from './Pages/landing/Contact/Contact'
+
 
 
 const App = () => {
 
   const [posts, setPosts] = useState([])
-  useEffect(() => {
-    axios.get('/post')
-    .then(res => setPosts(res.data))
-    .catch(err => console.log(err))
-  })
+    const [loading, setLoading] = useState(false)
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postsPerPage, setPostsPerPage] = useState(3)
+
+    useEffect(()=>{
+        const fetchPosts = async () => {
+          setLoading(true)
+          const res = await axios.get('/post')
+          setPosts(res.data)
+          setLoading(false)
+        }
+
+        fetchPosts()
+    },[])
+
+
+    const indexOfLastPost = currentPage * postsPerPage
+    const indexOfFirstPost = indexOfLastPost - postsPerPage
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost)
 
 
   return (
@@ -30,10 +46,12 @@ const App = () => {
         <Route path='/admin-login' exact component={Login} />
         <Route path='/addissue' exact component={AddIssue} />
         <Route path='/sidebar' exact component={Sidebar} />
-        <Route path='/admin' exact render={() => <AdminDashboard posts={posts} />} />
+        <Route path='/contact' exact component={Contact} />
+        <Route path='/admin' render={() => <AdminDashboard posts={currentPosts} loading={loading} postsPerPage={postsPerPage} totalPosts={posts.length} />} />
       </Switch>
     </Router>
   )
+  
 }
 
 export default App

@@ -15,11 +15,7 @@ const AddIssue = () => {
             <Sidebar isOpen={isOpen} toggle={toggle}/>
            <Navbar toggle={toggle} />
             <IssueForm />
-            <Footer 
-            facebook=''
-            twitter=''
-            instagram=''
-            />
+
         </>
     )
 }

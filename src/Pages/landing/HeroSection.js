@@ -25,7 +25,7 @@ const HeroSection = (img, alt) => {
                     <span className='text-center text-orange-500 ' >Taking Action</span></Text>
                 <Text textSize tailwind='text-center mt-4 md:mx-32'>Are you currently facing any Housing and Environmental Challenges in your community?</Text>
 
-                <div className='flex flex-col md:flex-row justify-center md:my-8 w-full md:w-auto'>
+                <div className='flex flex-col md:flex-row justify-center md:my-8 md:ml-1 w-full md:w-full mt-10 ml-40'>
                     <Link to='/form'>
                         <Button
                         tailwind={button}

@@ -35,7 +35,6 @@ const Form = () => {
     const [phone, setPhone] = useState('')
     const [location, setLocation] = useState('')
     const [description, setDescription] = useState('')
-    const [files, setFiles] = useState('')
 
     const changeOnClick = (e) =>{
         e.preventDefault()
@@ -44,15 +43,13 @@ const Form = () => {
             name,
             phone,
             location,
-            description,
-            files
+            description
         }
 
         setName('')
         setPhone('')
         setLocation('')
         setDescription('')
-        setFiles('')
 
         axios.post('/post/add', post)
         .then(res => console.log(res.data))
@@ -70,11 +67,11 @@ const Form = () => {
             <Sidebar isOpen={isOpen} toggle={toggle}/>
            <Navbar toggle={toggle} />
             <Container className='bg-gray-100 min-h-screen'>
-                <Text color tailwind='mb-5 mt-10' type='heading-large'>Get everything DONE and ready in under 5 minutes.</Text>
+                <Text color tailwind='mb-5 mt-10' type='heading-large'>Get in touch with <span className='text-orange-500'>Us!</span></Text>
                 <div className='lg:flex'>
 
                     <Card className={cardStyle}>
-                        <form onSubmit={changeOnClick} method='POST' encType="multipart/form-data">
+                        <form onSubmit={changeOnClick} encType="multipart/form-data">
                             <div className={cardWrapperStyle}>
                                 <Text color textSize tailwind={titleStyle} >  FullName </Text>
                                 <input className='w-full
@@ -104,7 +101,7 @@ const Form = () => {
                                                 onChange={(e) => setPhone(e.target.value)}
                                                 type='text'  />
 
-                                <Text color textSize tailwind={titleStyle} >  Location </Text>
+                                <Text color textSize tailwind={titleStyle} >  Email </Text>
                                 <input className='w-full
                                                 border border-gray-300
                                                 px-3 py-2
@@ -116,10 +113,10 @@ const Form = () => {
                                                 focus:ring-indigo-500 '
                                                 value={location}
                                                 onChange={(e) => setLocation(e.target.value)}
-                                                type='text' />
+                                                type='email' />
 
 
-                                <Text color textSize tailwind={titleStyle} >  Issue Description </Text>
+                                <Text color textSize tailwind={titleStyle} >  Message </Text>
                                 <textarea className='w-full
                                                 border border-gray-300
                                                 px-3 py-2
@@ -133,33 +130,11 @@ const Form = () => {
                                                 value={description}
                                                 placeholder='Your Community Issue'></textarea>
                                 
-
-                                {/* <Text color textSize tailwind={titleStyle} >  Image </Text>
-                                <div
-                                    onClick={() => console.log('drag and drop image')}
-                                    className={`cursor-pointer p-4 rounded ${contentStyle} flex flex-col items-center border border-dashed border-gray-400`}>
-                                    <Icon
-                                        size
-                                        color
-                                        tailwind='w-12 h-12 text-gray-500'
-                                        hasBackground={false}
-                                        // src={<ImgSVG />}
-                                    />
-                                    <input type='file'
-                                        name='file'
-                                        id='file'
-                                        value={files}
-                                        onChange={(e) => setFiles(e.target.value)}
-                                        accept='.jpeg, .jpg, .png, webp, .svg'
-                                        class='relative z-10 opacity-0 w-full h-full' />
-                                    <Text type='small'><span className='text-indigo-600'>Click to Upload a file</span> PNG,JPG, Gif up to 10MB</Text>
-                                </div>
-                                 */}
-                            </div>
                             
+                            </div>
 
                             <div className='w-full bg-gray-100 flex justify-end mt-8 px-8 py-4 rounded-b-lg'>
-                                <Button size='small' type='submit'
+                                <Button size='small' 
                                     onClick={() => setShow3(!show3)}
                                 >Submit</Button>
                             </div>
@@ -167,9 +142,7 @@ const Form = () => {
 
                     </Card>
                     <div className='flex felx-row w-2/5'>
-                        <ImgSVG />
-                        <ImgSVG1 />
-                        <ImgSVG2 />
+                        
                     </div>
                     
                 </div>
@@ -177,7 +150,7 @@ const Form = () => {
                         isShown={show3}
                         onCloseComplete={() => setShow3(false)}
                         title='Sumbitted Successfully'
-                        content={`Your Issue has been sent for review.`}
+                        content={`Your Message has been sent for review.`}
                         variant='success' />
                 <div className={horizontalLine} />
 

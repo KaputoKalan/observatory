@@ -1,7 +1,7 @@
 import React from 'react'
 import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavBtn, NavBtnLink } from './NavbarElements'
 import { FaBars} from 'react-icons/fa'
-
+import companylogo from './images/logo.png'
 
 
 
@@ -12,9 +12,11 @@ const Navbar = ({ toggle }) => {
     return (
         <>
             <Nav>
-                <NavbarContainer>
+                <NavbarContainer onClick={toggle}>
                     <NavLogo to='/'>
-                        Dollar
+
+                        <img className='h-10 w-18' src={companylogo}/>
+
                     </NavLogo>
                     <MobileIcon onClick={toggle}> 
                         <FaBars />
@@ -22,6 +24,9 @@ const Navbar = ({ toggle }) => {
                     <NavMenu>
                         <NavItem>
                             <NavLinks to='/' >Home</NavLinks>
+                        </NavItem>
+                        <NavItem>
+                            <NavLinks to='/' >About</NavLinks>
                         </NavItem>
                         <NavItem>
                             <NavLinks to='/issuelog' >IssueLog</NavLinks>

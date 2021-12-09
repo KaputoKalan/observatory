@@ -1,7 +1,8 @@
 import React from 'react'
 import { Nav, NavbarContainer, NavLogo, MobileIcon, NavMenu, NavItem, NavLinks, NavBtn, NavBtnLink } from './NavbarElements'
 import { FaBars} from 'react-icons/fa'
-
+import companylogo from '../../images/logo.png'
+import { useHistory } from 'react-router'
 
 
 
@@ -9,12 +10,14 @@ import { FaBars} from 'react-icons/fa'
 
 const Navbar = ({ toggle }) => {
 
+    const history = useHistory()
+
     return (
         <>
             <Nav>
                 <NavbarContainer>
                     <NavLogo to='/'>
-                        Dollar
+                         <img className='h-10 w-18' src={companylogo}/>
                     </NavLogo>
                     <MobileIcon onClick={toggle}> 
                         <FaBars />
@@ -30,6 +33,12 @@ const Navbar = ({ toggle }) => {
                             <NavLinks to='/addissue' >AddIssue</NavLinks>
                         </NavItem>
                     </NavMenu>
+                    <NavBtn>
+                        <NavBtnLink onClick={() => {
+                            localStorage.removeItem('userInfo')
+                            history.push('/')
+                        }}>Logout</NavBtnLink>
+                    </NavBtn>
                    
                 </NavbarContainer>
             </Nav>
