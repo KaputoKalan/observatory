@@ -16,7 +16,7 @@ export const Nav = styled.nav`
     z-index:10;
     padding: 1.6rem;
 
-    @media screen and (max-width: 960px){
+    @media screen and (max-width: 1024px){
         transition: 0.8s all ease
     }
 
@@ -26,7 +26,6 @@ export const NavbarContainer = styled.div`
     display: flex;
     justify-content space-between;
     height: 80px;
-    z-index;
     width: 100%;
     padding: 0 2rem;
     max-width: 1100px;
@@ -47,7 +46,7 @@ export const NavLogo = styled(Link)`
 export const MobileIcon =styled.div`
   display: none;
   
-  @media screen and (max-width: 768px){
+  @media screen and (max-width: 1024px){
       display: block;
       transform; translate(-100%, 60%)
       font-size: 1.8rem;
@@ -62,10 +61,10 @@ export const NavMenu = styled.ul`
   list-style: none;
   text-align:  center;
  
-  margin: 2rem;
+  
   
 
-  @media screen and (max-width: 768px){
+  @media screen and (max-width: 1024px){
       display: none;
   }
 `
@@ -92,7 +91,7 @@ export const NavBtn = styled.nav`
   diplay: flex;
   align-items: center;
 
-  @media screen and (max-width: 768px){
+  @media screen and (max-width: 1024px){
       display: none
   }
 `

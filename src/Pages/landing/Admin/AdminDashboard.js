@@ -4,13 +4,13 @@ import Text from '../../../components/text'
 import Card from '../../../components/card'
 import Footer from '../footer'
 import { Link, history } from 'react-router-dom'
-import Sidebar from '../Sidebar/Sidebar'
+import Sidebar from './components/Sidebar/Sidebar'
 import Pagination from '../components/Pagination'
 import Posts from './Posts'
 import axios from 'axios'
 
 
-const AdminDashboard = () => {
+const AdminDashboard = ({history}) => {
     const [isOpen, setIsOpen] = useState(false)
     const [posts, setPosts] = useState([])
  
@@ -33,6 +33,16 @@ const AdminDashboard = () => {
   
         fetchPosts()
     },[])
+
+    useEffect(() => {
+        const userInfo = localStorage.getItem("userInfo")
+        if (!userInfo) {
+          history.push("/");
+        }
+      }, [
+
+        history,
+      ]);
   
   
     const indexOfLastPost = currentPage * postsPerPage
